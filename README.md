@@ -4,7 +4,7 @@
 ## How it works?
 - It takes url as input and give as output as dataframe which is datatype from pandas
 
-## requirements
+## Requirements
 - bs4
 - pandas
 - numpy
