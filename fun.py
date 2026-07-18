@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-url = 'https://github.com/ACE43-dev/data-analysis'
+url = 'https://github.com/torvalds/linux'
 
 
 response = requests.get(url)
@@ -14,9 +14,12 @@ sp= list(spans)
 
 # for i in range(len(spans)):
 #     print(s.iloc[i:167])
+print(len(sp))
 
 mylistper = []
-deflen=len(spans[0])
+deflen=len(str(spans[0]))
+
+print(deflen)
 if(deflen==168):
     deflen = 168
 elif(deflen==166):
@@ -25,20 +28,27 @@ else:
     deflen = 167
 
 
-for i in range(len(sp)):
+for i in range(0,len(sp)):
     newstr = str(sp[i])
     # print(len(str(i)))
     if deflen == 168:
         mylistper.append(newstr[152:157])  
-        deflen = len(sp[i+1])
+        if i >= len(sp)-1:
+            break
+        else:
+            deflen = len(newstr[i+1])
     elif deflen == 167:
         mylistper.append(newstr[152:156])  
-        deflen = len(sp[i+1])
+        
+        if i >= len(sp)-1:
+            break
+        else:
+            deflen = len(newstr[i+1])
     else:
         mylistper.append(newstr[152:155])  
 # newstr =str(sp[0])
 # mylistper.append(newstr[10:13])
-# print(mylistper)
+print(mylistper)
     
 
 
