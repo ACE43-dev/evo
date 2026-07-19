@@ -13,21 +13,21 @@ def extractor(url):
     spans = soup.find_all('span',class_ = "Progress-item color-bg-success-emphasis")
     sp= list(spans)
 
-
+    print(spans)
     # for i in range(len(spans)):
     #     print(s.iloc[i:167])
     # print(len(sp))
 
     mylistper = []
-    deflen=len(str(spans[0]))
-
+    # deflen=len(str(spans[0]))
+    
     # print(deflen)
-    if(deflen==168):
-        deflen = 168
-    elif(deflen==166):
-        deflen = 166
-    else:
-        deflen = 167
+    # if(deflen==168):
+    #     deflen = 168
+    # elif(deflen==166):
+    #     deflen = 166
+    # else:
+    #     deflen = 167
 
 
     for i in range(0,len(sp)):
@@ -72,8 +72,8 @@ def extractor(url):
 
 
 
-    df = pd.DataFrame(mylistper,mylistlan)
-    
+    df = pd.DataFrame({"Languages":mylistlan,"Percentage":mylistper,"Url":url})
+    print("funciton ran")
     return df
 
 print(extractor("https://github.com/torvalds/linux"))
