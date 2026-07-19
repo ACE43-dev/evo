@@ -14,6 +14,7 @@ class Tools:
         self.series1 = []
         self.series2 = []
         self.dataUrl = []
+        self.count = 0
         # self.df = pd.DataFrame()
     def vaildCheck(self):
         for url in self.Url:
@@ -21,7 +22,8 @@ class Tools:
     
     def extractor(self):
         for url in self.Url:
-            
+                    self.count = self.count+1
+                    print(self.count)
                     self.response = requests.get(url)
                     self.soup = BeautifulSoup(self.response.text, 'html.parser')
                     
@@ -29,22 +31,18 @@ class Tools:
                     self.data1 = self.soup.find_all('span',class_ = "color-fg-default text-bold mr-1")
                     if(self.data1 != []):
                         for i in range(len(self.data1)):
-                           
                             self.series1.append(self.data1[i].text)
                             self.dataUrl.append(url)
                             
-
                             
-                    
                     # data 2 is percentage data 
                     self.data2 = (self.soup.find_all('span',class_ = "Progress-item color-bg-success-emphasis"))
                     if(self.data2 != []):
-                        print((self.data2))
+
                         for i in range(len(self.data2)):
                             temp = str(self.data2[i])
                             x = len(temp)
-                            print(x,"\n")
-                            
+
                             if x == 168:
                                 self.series2.append(temp[152:157])
                             elif x == 167:
@@ -53,13 +51,19 @@ class Tools:
                                 self.series2.append(temp[152:155])
                             else:
                                 self.series2.append("problem")
-                        
+             
         # print(self.series1)
         # print(self.series2)
         # print(self.dataUrl)
+        return pd.DataFrame({
+            "Languages":pd.Series(self.series1),
+            "percentage":pd.Series(self.series2),
+            "url":pd.Series(self.dataUrl)
+        })
+        
                     
                     
             
                 
 t1 = Tools(Url)
-t1.extractor()
+t1.extractor().to_csv("data.csv")
