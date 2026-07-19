@@ -19,7 +19,7 @@ def extractor(url):
     # print(len(sp))
 
     mylistper = []
-    # deflen=len(str(spans[0]))
+    deflen=len(str(spans[0]))
     
     # print(deflen)
     # if(deflen==168):
@@ -46,8 +46,10 @@ def extractor(url):
                 break
             else:
                 deflen = len(newstr[i+1])
+        elif deflen ==166:
+            mylistper.append(newstr[152:155]) 
         else:
-            mylistper.append(newstr[152:155])  
+            pass 
     # newstr =str(sp[0])
     # mylistper.append(newstr[10:13])
     # print(mylistper)

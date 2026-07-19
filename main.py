@@ -3,19 +3,18 @@ from bs4 import BeautifulSoup
 # import numpy as np
 import pandas as pd
 x = pd.read_csv("websites.csv")
-# Url = x.Name
-Url = pd.Series(["https://github.com/codecrafters-io/build-your-own-x","https://github.com/sindresorhus/awesome","https://github.com/freeCodeCamp/freeCodeCamp","https://github.com/public-apis/public-apis"],name="Name")
+Url = x.Name
+
+#testing data
+# Url = pd.Series(["https://github.com/codecrafters-io/build-your-own-x","https://github.com/sindresorhus/awesome","https://github.com/freeCodeCamp/freeCodeCamp","https://github.com/public-apis/public-apis"],name="Name")
+
 class Tools:
     def __init__(self,Url:pd.Series):
         self.Url = Url
-        # self.series1 = pd.Series([],name="Language")
-        # self.series2 = pd.Series([],name="percentage")
-        # self.dataUrl = pd.Series([],name="Url")
         self.series1 = []
         self.series2 = []
         self.dataUrl = []
         self.count = 0
-        # self.df = pd.DataFrame()
     def vaildCheck(self):
         for url in self.Url:
             print(url)
@@ -52,9 +51,6 @@ class Tools:
                             else:
                                 self.series2.append("problem")
              
-        # print(self.series1)
-        # print(self.series2)
-        # print(self.dataUrl)
         return pd.DataFrame({
             "Languages":pd.Series(self.series1),
             "percentage":pd.Series(self.series2),
