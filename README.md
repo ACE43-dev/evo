@@ -15,7 +15,8 @@
 
 - where is the programm?
 in main.py (currently).
-
+- where is analyzed data currently?
+chart.png
 - how did you get list of git repos?
 I used starlist.dev to extract list of git repos.
 
